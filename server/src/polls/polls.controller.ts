@@ -1,15 +1,16 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { CreatePollDto, JoinPollDto } from './dtos';
 
 @Controller('polls')
 export class PollsController {
   @Post()
-  async create() {
-    return { message: 'Poll created' };
+  async create(@Body() createPollDto: CreatePollDto) {
+    return createPollDto;
   }
 
   @Post('/join')
-  async join() {
-    return { message: 'Poll joined' };
+  async join(@Body() joinPollDto: JoinPollDto) {
+    return joinPollDto;
   }
 
   @Post('/rejoin')
