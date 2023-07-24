@@ -8,7 +8,7 @@ export class CreatePollDto {
   @IsInt()
   @Min(1)
   @Max(5)
-  VotesPerVoter: number;
+  votesPerVoter: number;
 
   @IsString()
   @Length(1, 25)
