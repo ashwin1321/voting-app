@@ -13,12 +13,19 @@ async function bootstrap() {
       ],
     },
   });
-
   const configService = app.get(ConfigService);
+  const clientPort = parseInt(configService.get('CLIENT_PORT'));
+
+  app.enableCors({
+    origin: [
+      `http://localhost:${clientPort}}`,
+      /^http:\/\/192\.168\.1\.([1-9]|[1-9]\d):8081$/,
+    ],
+  });
+
   const port = parseInt(configService.get('PORT'));
   await app.listen(port);
 
-  // change
   logger.log(`Server running on port ${port}`);
 }
 bootstrap();
